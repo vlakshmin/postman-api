@@ -1,0 +1,3880 @@
+openapi: 3.0.0
+info:
+  title: RSSP Integration with Github
+  version: 1.0.0
+servers:
+  - url: http://{{url}}
+  - url: https://qa-s-api.rmp.rakuten.com
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: Regression V2
+  - name: Regression V2 > auth
+  - name: Regression V2 > account
+  - name: Regression V2 > account > get
+  - name: Regression V2 > account > get > filter
+  - name: Regression V2 > account > get > filter > id
+  - name: Regression V2 > account > get > filter > name
+  - name: Regression V2 > account > get > filter > active
+  - name: Regression V2 > account > get > filter > publisherId
+  - name: Regression V2 > account > get > filter > updatedBy
+  - name: Regression V2 > account > get > filter > createdBy
+  - name: Regression V2 > account > get > filter > updatedDate
+  - name: Regression V2 > account > get > filter > createdDate
+  - name: Regression V2 > account > get > offset
+  - name: Regression V2 > account > delete account
+  - name: Regression V2 > publisher
+  - name: Regression V2 > publisher > get
+  - name: Regression V2 > publisher > get > filter
+  - name: Regression V2 > publisher > get > filter > id
+  - name: Regression V2 > publisher > get > filter > name
+  - name: Regression V2 > publisher > get > filter > currency
+  - name: Regression V2 > publisher > get > filter > active
+  - name: Regression V2 > publisher > get > filter > created by
+  - name: Regression V2 > publisher > get > filter > updated by
+  - name: Regression V2 > publisher > get > filter > updated date
+  - name: Regression V2 > publisher > get > filter > created date
+  - name: Regression V2 > publisher > create
+  - name: Regression V2 > publisher > create > Added Tests Publisher ticket
+  - name: Regression V2 > publisher > create > Added Tests Publisher ticket > single
+  - name: Regression V2 > publisher > create > Added Tests Publisher ticket > cross
+  - name: Regression V2 > publisher > delete
+  - name: Regression V2 > media
+  - name: Regression V2 > media > delete
+  - name: Regression V2 > media > filter
+  - name: Regression V2 > media > filter > created date
+  - name: Regression V2 > media > filter > 3309
+  - name: Regression V2 > filter
+  - name: Regression V2 > filter > get
+  - name: Regression V2 > filter > create
+  - name: Regression V2 > filter > update
+  - name: Regression V2 > adspots
+  - name: Regression V2 > adspots > get
+  - name: Regression V2 > adspots > get > filter
+  - name: Regression V2 > adspots > get > filter > id
+  - name: Regression V2 > adspots > get > filter > name
+  - name: Regression V2 > adspots > get > filter > active
+  - name: Regression V2 > adspots > get > filter > publisherID
+  - name: Regression V2 > adspots > get > filter > created by
+  - name: Regression V2 > adspots > get > filter > updated by
+  - name: Regression V2 > adspots > get > filter > created date
+  - name: Regression V2 > adspots > get > filter > updated date
+  - name: Regression V2 > adspots > get > filter > test mode
+  - name: Regression V2 > adspots > get > filter > size id
+  - name: Regression V2 > adspots > create
+  - name: Regression V2 > adspots > create > additional tests
+  - name: Regression V2 > adspots > update
+  - name: Regression V2 > adspots > delete
+  - name: Regression V2 > private auctions
+  - name: Regression V2 > deals
+  - name: Regression V2 > dsp
+  - name: Regression V2 > adFormat
+  - name: Regression V2 > adSizes
+  - name: Regression V2 > adPositions
+  - name: Regression V2 > buyers
+  - name: Regression V2 > currency
+  - name: Regression V2 > category
+  - name: Regression V2 > device
+  - name: Regression V2 > datacenter
+  - name: Regression V2 > geos
+  - name: Regression V2 > native
+  - name: Regression V2 > platform
+  - name: Regression V2 > reports
+  - name: Regression V2 > video
+  - name: Regression V2 > timezones
+  - name: RSSP V3
+  - name: RSSP V3 > auth (v2)
+  - name: RSSP V3 > protections (rules)(v3)
+  - name: RSSP V3 > protections (rules)(v3) > sort/filter
+  - name: RSSP V3 > protections (rules)(v3) > sort/filter > Client support
+  - name: >-
+      RSSP V3 > protections (rules)(v3) > sort/filter > sort/filter without
+      client support folder
+  - name: RSSP V3 > protections (rules)(v3) > GS 2442
+  - name: RSSP V3 > protections (rules)(v3) > GS-2443
+  - name: RSSP V3 > protections (rules)(v3) > GS-2198
+  - name: RSSP V3 > protections (rules)(v3) > GS-2111 ID validation Copy
+  - name: RSSP V3 > protections (rules)(v3) > GS-2279 category buffer lenght
+  - name: RSSP V3 > protections NEW
+  - name: RSSP V3 > protections NEW > create
+  - name: RSSP V3 > protections NEW > create > exclude one targeting
+  - name: RSSP V3 > protections NEW > create > exclude two targetings
+  - name: RSSP V3 > protections NEW > update
+  - name: RSSP V3 > protections NEW > update > exclude one targeting
+  - name: RSSP V3 > protections NEW > update > exclude two targetings
+  - name: RSSP V3 > protections NEW > delete
+  - name: RSSP V3 > protections NEW > 2925
+  - name: RSSP V3 > protections NEW > 2925 > name
+  - name: RSSP V3 > protections NEW > 2925 > created_by
+  - name: RSSP V3 > protections NEW > 2925 > updated_by
+  - name: RSSP V3 > protections NEW > 2925 > updated_date
+  - name: RSSP V3 > protections NEW > 2925 > created_date
+  - name: RSSP V3 > protections NEW > 2925 > publisher_id
+  - name: RSSP V3 > protections NEW > 2925 > admin_only
+  - name: RSSP V3 > protections NEW > 2925 > active
+  - name: RSSP V3 > protections NEW > 2925 > id
+  - name: RSSP V3 > private auction
+  - name: RSSP V3 > private auction > get
+  - name: RSSP V3 > private auction > get > filter
+  - name: RSSP V3 > private auction > get > filter > creartedDate
+  - name: RSSP V3 > private auction > get > filter > updatedDate
+  - name: RSSP V3 > Variations with protections v2 vs v3
+  - name: RSSP V3 > deals
+  - name: RSSP V3 > deals > get
+  - name: RSSP V3 > deals > get > filter
+  - name: RSSP V3 > deals > get > filter > name
+  - name: RSSP V3 > deals > get > filter > id
+  - name: RSSP V3 > deals > get > filter > always on
+  - name: RSSP V3 > deals > get > filter > dsp id
+  - name: RSSP V3 > deals > get > filter > private auction id
+  - name: RSSP V3 > deals > get > filter > publisher id
+  - name: RSSP V3 > deals > get > filter > active
+  - name: RSSP V3 > deals > get > filter > currency
+  - name: RSSP V3 > deals > get > filter > created by
+  - name: RSSP V3 > deals > get > filter > updated by
+  - name: RSSP V3 > deals > create
+  - name: RSSP V3 > buyers
+  - name: RSSP V3 > Version
+  - name: RSSP V3 > ad format
+  - name: RSSP V3 > dsp
+  - name: RSSP V3 > dsp > get
+  - name: RSSP V3 > dsp > get > filter
+  - name: RSSP V3 > dsp > get > filter > name
+  - name: RSSP V3 > dsp > get > filter > id
+  - name: RSSP V3 > dsp > get > filter > status
+  - name: RSSP V3 > dsp > get > filter > created date
+  - name: RSSP V3 > dsp > get > filter > updated date
+  - name: RSSP V3 > dsp > get > filter > created by
+  - name: RSSP V3 > dsp > get > filter > updated by
+  - name: RSSP V3 > dsp > create
+  - name: RSSP V3 > dsp > delete
+  - name: RSSP V3 > dynamic-pricing
+  - name: RSSP V3 > dynamic-pricing > get
+  - name: RSSP V3 > dynamic-pricing > get > search
+  - name: RSSP V3 > dynamic-pricing > create
+  - name: RSSP V3 > dynamic-pricing > create > exclude one targeting
+  - name: RSSP V3 > dynamic-pricing > create > exclude two targetings
+  - name: RSSP V3 > dynamic-pricing > create > non-existed targeting item
+  - name: RSSP V3 > dynamic-pricing > delete
+  - name: RSSP V3 > dynamic-pricing > update
+  - name: RSSP V3 > dynamic-pricing > update > exclude one targeting
+  - name: RSSP V3 > dynamic-pricing > update > exclude two targetings
+  - name: RSSP V3 > open-pricing
+  - name: RSSP V3 > open-pricing > get
+  - name: RSSP V3 > open-pricing > get > filter
+  - name: RSSP V3 > open-pricing > get > filter > id
+  - name: RSSP V3 > open-pricing > get > filter > name
+  - name: RSSP V3 > open-pricing > get > filter > active
+  - name: RSSP V3 > open-pricing > get > filter > priority
+  - name: RSSP V3 > open-pricing > get > filter > createdAt
+  - name: RSSP V3 > open-pricing > get > filter > updatedAt
+  - name: RSSP V3 > open-pricing > get > filter > createdBy
+  - name: RSSP V3 > open-pricing > get > filter > updatedBy
+  - name: RSSP V3 > open-pricing > get > filter > publisher id
+  - name: RSSP V3 > open-pricing > get > filter > combinaton
+  - name: RSSP V3 > open-pricing > get > search
+  - name: RSSP V3 > open-pricing > get > offset
+  - name: RSSP V3 > open-pricing > create
+  - name: RSSP V3 > open-pricing > create > exclude one targeting
+  - name: RSSP V3 > open-pricing > create > non-existed targeting item
+  - name: RSSP V3 > open-pricing > update
+  - name: RSSP V3 > open-pricing > update > exclude one targeting
+  - name: RSSP V3 > open-pricing > update > non-existed targeting item
+  - name: RSSP V3 > open-pricing > delete
+  - name: RSSP V3 > open-pricing > export
+  - name: RSSP V3 > devices V3
+  - name: RSSP V3 > datacenter
+paths:
+  /v2/login:
+    post:
+      tags:
+        - RSSP V3 > auth (v2)
+      summary: Retrieve JWT token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                mail: '{{username}}'
+                password: '{{password}}'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/accounts:
+    post:
+      tags:
+        - Regression V2 > account
+      summary: Create an account(Admin)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                mail: '{{account_mail}}'
+                name: Test Account
+                password: Password1
+                publisherId: null
+                role: 4
+                isEnabled: true
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Regression V2 > account
+      summary: Get Accounts
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/accounts/100500:
+    delete:
+      tags:
+        - Regression V2 > account > delete account
+      summary: Delete non-existed Account
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/accounts/{single_publisher_account_id}:
+    delete:
+      tags:
+        - Regression V2 > account > delete account
+      summary: Single-publisher Account
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: single_publisher_account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/accounts/{cross_publisher_account_idd}:
+    delete:
+      tags:
+        - Regression V2 > account > delete account
+      summary: Admin Account
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: cross_publisher_account_idd
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/accounts/{admin_account_id}:
+    get:
+      tags:
+        - Regression V2 > account
+      summary: Get Account by id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: query
+          schema:
+            type: string
+          example: application/json
+        - name: admin_account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/accounts/{account_id}:
+    put:
+      tags:
+        - Regression V2 > account
+      summary: Update an account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                mail: updated_{{account_mail}}
+                name: publisher70
+                publisherId: 1
+                role: 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Regression V2 > account
+      summary: Get Account by id after update
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: query
+          schema:
+            type: string
+          example: application/json
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/publishers:
+    get:
+      tags:
+        - Regression V2 > publisher > get
+      summary: Get All Publishers
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Regression V2 > publisher
+      summary: Create a publisher no salesAccountName
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: '{{publisher_name}}'
+                mail: '{{publisher_mail}}'
+                currency: JPY
+                domain: rakuten.com
+                categoryIds:
+                  - 10
+                  - 180
+                isEnabled: true
+      security:
+        - bearerAuth: []
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/publishers/{new_pub_id}:
+    get:
+      tags:
+        - Regression V2 > publisher > get
+      summary: Publisher check created/updated
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: new_pub_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/publishers/{pricing_pub_id}:
+    delete:
+      tags:
+        - Regression V2 > publisher > delete
+      summary: Publisher Disabled
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pricing_pub_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/publishers/722:
+    delete:
+      tags:
+        - Regression V2 > publisher > delete
+      summary: Publisher Permission
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '403':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/publishers/{delete_pub_id}:
+    delete:
+      tags:
+        - Regression V2 > publisher > delete
+      summary: Publisher with Media and AdSpot Connected
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: delete_pub_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/publishers/{publisher_id}:
+    get:
+      tags:
+        - Regression V2 > publisher
+      summary: Get publisher by id Check Update
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: publisher_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Regression V2 > publisher
+      summary: Update a publisher
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: '{{publisher_name}}_updated auto'
+                mail: updated{{publisher_mail}}
+                currency: USD
+                domain: rakuten.com
+                salesAccountName: Test Publisher
+                categoryIds:
+                  - 10
+                  - 180
+                isEnabled: true
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: publisher_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/media/{test_media_id}:
+    delete:
+      tags:
+        - Regression V2 > media > delete
+      summary: Media Permission
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: test_media_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '403':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/media:
+    get:
+      tags:
+        - Regression V2 > media
+      summary: Get all media
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Regression V2 > media
+      summary: Create a media no publisher id
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"platformId\": 2,\n    \"appBundleId\":
+                \"string\",\n    \"appReleased\": true,\n    \"categoryIds\":
+                [\n        1,\n        2,\n        3\n    ],\n    \"iconPath\":
+                \"string\",\n    \"isEnabled\": true,\n    \"name\": \"Auto Test
+                New Name\",\n    \n    \"url\": \"http://localhost:5016\",\n   
+                \"updatedAt\": \"2019-01-25T20:27:04Z\",\n    \"createdAt\":
+                \"0001-01-01T00:00:00Z\",\n    \"prebid_cache_enabled\":
+                true\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/media/5596:
+    get:
+      tags:
+        - Regression V2 > media > filter > 3309
+      summary: Create a media Copy 2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/media/{post_media_id}:
+    get:
+      tags:
+        - Regression V2 > media
+      summary: Get media by id Check Update disable
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: post_media_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Regression V2 > media
+      summary: Update a media no publisher id
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"platformId\": 4,\n    \"categoryIds\": [\n       
+                1,\n        2,\n        3\n    ],\n    \"isEnabled\": true,\n   
+                \"name\": \"Auto Test Updated Name\",\n    \n    \"url\":
+                \"https://play.google.com/store/apps/details?id=com.test.app\"\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: post_media_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/filters/dsps:
+    get:
+      tags:
+        - Regression V2 > filter > get
+      summary: filters dsps
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '404':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/filters:
+    get:
+      tags:
+        - Regression V2 > filter > get
+      summary: filters
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '404':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Regression V2 > filter > create
+      summary: filter
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"name\": \"{{filter_name}}\",\n    \"updatedAt\":
+                \"2019-02-04T22:14:58Z\",\n    \"createdAt\":
+                \"2019-02-04T22:14:58Z\"\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '404':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/filters/12:
+    get:
+      tags:
+        - Regression V2 > filter > get
+      summary: filter by id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '404':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/filters/1:
+    put:
+      tags:
+        - Regression V2 > filter > update
+      summary: filter
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"name\": \"{{filter_name}}_updated\",\n   
+                \"updatedAt\": \"2019-02-04T22:14:58Z\",\n    \"createdAt\":
+                \"2019-02-04T22:14:58Z\"\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '404':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/adspots:
+    get:
+      tags:
+        - Regression V2 > adspots > get > filter > size id
+      summary: check multiple size id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: size_id
+          in: query
+          schema:
+            type: string
+          example: '{{ad_spot_sizeIds}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/search-adspots:
+    get:
+      tags:
+        - Regression V2 > adspots > get
+      summary: Get all adspots
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          example: '0'
+        - name: sort
+          in: query
+          schema:
+            type: string
+          example: floor_price-desc
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '200'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/media/{adspot_media_id}/adspots/{adspot_media_mediA_id}:
+    get:
+      tags:
+        - Regression V2 > adspots > get
+      summary: Get adspot by id for media
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: adspot_media_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: adspot_media_mediA_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/media/{adspot_media_id}/adspots:
+    post:
+      tags:
+        - Regression V2 > adspots > create
+      summary: Adspot with Publisher Disabled
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: |-
+                {
+                  "name": "Auto {{$randomAbbreviation}} {{$randomColor}}",
+                  "mediaId": {{adspot_media_id}},
+                  "publisherId": {{adspot_pub_id}},
+                  "publisherCurrency": "JPY",
+                  "positionId": 3,
+                  "adFormat": [],
+                  "categoryIds": [
+                    130
+                  ],
+                  "floorPrice": 12.21,
+                  "testMode": true,
+                  "enabled": true,
+                  "coppa": true,
+                  "video": {
+                    "enabled": true,
+                    "placementType": 1,
+                    "sizeIds": [
+                      10
+                    ],
+                    "floorPrice": 14.88,
+                    "minDuration": 15,
+                    "maxDuration": 30,
+                    "playbackMethodIds": [
+                      1,
+                      6,
+                      5,
+                      4,
+                      3,
+                      2
+                    ]
+                  },
+                  "banner": {
+                    "enabled": false,
+                    "sizeIds": [
+                      26
+                    ],
+                    "floorPrice": 3.33
+                  },
+                  "native": {
+                    "enabled": false,
+                    "floorPrice": 14.88
+                  },
+                  "sizeIds": [
+                    26
+                  ],
+                  "customSizing": false,
+                  "sizeless": false
+                }
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: adspot_media_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/media/{media_id}/adspots:
+    post:
+      tags:
+        - Regression V2 > adspots > create
+      summary: Adspot no media
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Auto Medium Rectangle
+                categoryIds:
+                  - 1
+                  - 10
+                  - 2
+                  - 50
+                  - 392
+                floorPrice: 0
+                floorPriceAutomated: false
+                testMode: false
+                enabled: true
+                customSizing: true
+                coppa: true
+                sizeIds:
+                  - 10
+                  - 12
+                positionId: 1
+                banner:
+                  enabled: true
+                  floorPrice: 4
+                  sizeIds:
+                    - 3
+                    - 4
+                native:
+                  enabled: true
+                  floorPrice: 5
+                video:
+                  enabled: true
+                  floorPrice: 2.5
+                  placementType: 1
+                  playbackMethodIds:
+                    - 1
+                    - 2
+                  sizeIds:
+                    - 4
+                    - 5
+                  minDuration: 30
+                  maxDuration: 30
+                createdAt: '2020-05-15T09:46:00Z'
+                updatedAt: '2020-05-15T09:46:00Z'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: media_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/media/{test_media_id}/adspots:
+    post:
+      tags:
+        - Regression V2 > adspots > create
+      summary: Adspot without video placement type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: |-
+                {
+                  "name": "Auto {{$randomAbbreviation}} {{$randomColor}}",
+                  "mediaId": {{test_media_id}},
+                  "categoryIds": [
+                    1,
+                    10,
+                    2,
+                    50,
+                    392
+                  ],
+                   "publisherId": {{adspot_pub_id}},
+                  "publisherName": "{{pricing_pub_name}}",
+                  "floorPrice": 10,
+                  "floorPriceAutomated": false,
+                  "testMode": false,
+                  "enabled": true,
+                  "customSizing": true,
+                  "coppa": true,
+                  "sizeIds": [
+                    10
+                  ],
+                  "positionId": 1,
+                  "banner": {
+                    "enabled": true,
+                    "floorPrice": 11,
+                    "sizeIds": [
+                      3
+                    ]
+                  },
+                  "native": {
+                    "enabled": true,
+                    "floorPrice": 11.11
+                  },
+                  "video": {
+                    "enabled": true,
+                    "floorPrice": 111.111,
+                    "playbackMethodIds": [
+                      1,
+                      2
+                    ],
+                    "sizeIds": [
+                      4
+                    ],
+                    "minDuration": 100,
+                    "maxDuration": 1000
+                  }
+
+                }
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: test_media_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/media/{adspot_media_id}/adspots/{test_adspot_id}:
+    put:
+      tags:
+        - Regression V2 > adspots > update
+      summary: Adspot Disable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: |-
+                {
+                  "name": "Auto {{$randomAbbreviation}} {{$randomColor}}",
+                  "mediaId": {{adspot_media_id}},
+                  "publisherId": {{adspot_pub_id}},
+                  "publisherCurrency": "JPY",
+                  "positionId": 3,
+                  "adFormat": [],
+                  "categoryIds": [
+                    130
+                  ],
+                  "floorPrice": 12.21,
+                  "testMode": true,
+                  "enabled": false,
+                  "coppa": true,
+                  "video": {
+                    "enabled": true,
+                    "placementType": 1,
+                    "sizeIds": [
+                      10
+                    ],
+                    "floorPrice": 14.88,
+                    "minDuration": 15,
+                    "maxDuration": 30,
+                    "playbackMethodIds": [
+                      1,
+                      6,
+                      5,
+                      4,
+                      3,
+                      2
+                    ]
+                  },
+                  "sizeIds": [
+                    26
+                  ],
+                  "customSizing": false,
+                  "sizeless": false,
+                  "createdAt": "2020-05-15T09:46:00Z",
+                  "updatedAt": "2020-05-15T09:46:00Z"
+                }
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: adspot_media_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: test_adspot_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/adspots/{test_adspot_id}:
+    delete:
+      tags:
+        - Regression V2 > adspots > delete
+      summary: Adspot Permission
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: test_adspot_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '403':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/adspots/100500:
+    delete:
+      tags:
+        - Regression V2 > adspots > delete
+      summary: non-existed Adspot
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/pmp/private-auctions:
+    get:
+      tags:
+        - Regression V2 > private auctions
+      summary: Get all private auctions
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: ''
+          in: query
+          schema:
+            type: string
+        - name: sort
+          in: query
+          schema:
+            type: string
+          example: id-asc
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Regression V2 > private auctions
+      summary: Create a private auction no publisher id
+      description: |-
+        1) On the line 30 dspId 2 and dspId 7 provide different results
+        2) dspId on line 42 is different in the request and response
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 1
+                name: auto before change
+                enabled: true
+                publisherName: ''
+                optimized: true
+                startDate: '2021-09-27T00:00:00Z'
+                endDate: '2021-09-29T00:00:00Z'
+                noEndDate: false
+                inventoryTargeting:
+                  rule:
+                    adFormats:
+                      - 2
+                    adSizes:
+                      - adSizeId: 0
+                        height: 2
+                        width: 2
+                    adspots:
+                      - 1
+                    dsps:
+                      - 2
+                    geo:
+                      geos:
+                        - 222
+                      block: false
+                    deviceOS:
+                      - 2
+                deals:
+                  - id: 1
+                    name: test deal 1
+                    enabled: true
+                    floorPrice: 10
+                    currency: USD
+                    publisherId: 2
+                    publisherName: Test Publisher
+                    dspId: 6
+                    privateAuctionId: 1
+                    privateAuctionName: test private auction
+                    createdAt: '0001-01-01T00:00:00Z'
+                    updatedAt: '0001-01-01T00:00:00Z'
+                    createdBy: ''
+                    updatedBy: ''
+                    buyers:
+                      - proposal: test proposal
+                        buyer:
+                          id: 2
+                          dspId: 4
+                          identifiers:
+                            - publisherId: null
+                              value: buyer ident 1
+                              kind:
+                                id: 1
+                                name: ''
+                            - publisherId: null
+                              value: buyer ident 2
+                              kind:
+                                id: 2
+                                name: ''
+                          createdAt: '0001-01-01T00:00:00Z'
+                          updatedAt: '0001-01-01T00:00:00Z'
+                    blockTargeting:
+                      rule:
+                        advertiser:
+                          values:
+                            - a1.com
+                            - testadv
+                          block: true
+                          allowUnknownAdvertisers: false
+                          allowNonDomains: false
+                          allowSubdomains: false
+                        adFormats:
+                          - 2
+                        dsps:
+                          - 2
+                        geo:
+                          geos:
+                            - 222
+                          block: false
+                relatedPackages:
+                  - package: test package 1
+                  - package: test package 2
+                  - package: test package 3
+                createdAt: '0001-01-01T00:00:00Z'
+                updatedAt: '0001-01-01T00:00:00Z'
+                createdBy: ''
+                updatedBy: ''
+      security:
+        - bearerAuth: []
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/pmp/private-auctions/{test_private_auction_id}:
+    get:
+      tags:
+        - Regression V2 > private auctions
+      summary: Get private auction by id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: test_private_auction_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Regression V2 > private auctions
+      summary: Update a private auction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: |-
+                {  
+                    "name": "auto after change",
+                    "enabled": true,
+                    "publisherId": {{auction_pub_id}},
+                    "publisherName": "",
+                    "optimized": true,
+                    "startDate": "2024-09-27T00:00:00Z",
+                    "endDate": "2024-09-29T00:00:00Z",
+                    "noEndDate": false,
+                    "inventoryTargeting": {
+                        "rule": {
+                            "adFormats": [
+                                2
+                            ],
+                            "adSizes": [
+                                {
+                                    "adSizeId": 0,
+                                    "height": 2,
+                                    "width": 2
+                                }
+                            ],
+                            "adspots": [
+                                1
+                            ],
+                            "dsps": [
+                                2
+                            ],
+                            "geo": {
+                                "geos": [
+                                    222
+                                ],
+                                "block": false
+                            },
+                            "deviceOS": [
+                                2
+                            ]
+                        }
+                    },
+                    "relatedPackages": [
+                        {
+                            "package": "test package 1"
+                        },
+                        {
+                            "package": "test package 2"
+                        },
+                        {
+                            "package": "test package 3"
+                        }
+                    ],
+                    "createdAt": "0001-01-01T00:00:00Z",
+                    "updatedAt": "0001-01-01T00:00:00Z",
+                    "createdBy": "",
+                    "updatedBy": ""
+                }
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: test_private_auction_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/pmp/private-auctions/{test_private_auction_id_update}:
+    get:
+      tags:
+        - Regression V2 > private auctions
+      summary: Get private auction by id Check Update Copy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: test_private_auction_id_update
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/pmp/deals:
+    get:
+      tags:
+        - Regression V2 > deals
+      summary: Get all deals
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Regression V2 > deals
+      summary: Create deal 7 digits price
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: '{{$randomAbbreviation}} deal'
+                enabled: true
+                price: 10
+                floorPrice: 9799999.19
+                currency: USD
+                publisherId: 4
+                publisherName: Mark Mceachran
+                dspId: 21
+                dspName: Rubicon
+                privateAuctionId: 4
+                buyers:
+                  - proposal: test proposal
+                    enabled: true
+                    buyer:
+                      dspId: 4
+                      identifiers:
+                        - publisherId: 1
+                          value: buyer ident 1
+                          kind:
+                            id: 1
+                            name: DSP Seat ID
+                blockTargeting:
+                  rule:
+                    advertiser:
+                      allowNonDomains: false
+                      allowSubdomains: false
+                      allowUnknownAdvertisers: false
+                      block: false
+                      values:
+                        - string
+                    categories:
+                      - 7
+                    dsps:
+                      - 2
+                    geo:
+                      block: false
+                      geos:
+                        - 9
+                        - 4
+                        - 20
+      security:
+        - bearerAuth: []
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/pmp/deals/{deal_id}:
+    get:
+      tags:
+        - Regression V2 > deals
+      summary: Get deals by id Check Update
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: deal_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Regression V2 > deals
+      summary: Update deal 7 digits price
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: testDeal_updated
+                enabled: true
+                price: 11
+                floorPrice: 7999999.99
+                currency: USD
+                publisherId: 2
+                publisherName: Mark Mceachran
+                dspId: 2
+                dspName: Rubicon
+                privateAuctionId: 5
+                startDate: '2020-10-15T10:27:13Z'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: deal_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/dsps:
+    post:
+      tags:
+        - Regression V2 > dsp
+      summary: Create dsp
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"corp\": \"dumbbidder\",\n    \"currency\":
+                \"USD\",\n    \"country\": \"US\",\n    \"bidEndpoints\":
+                [\n        {\n            \"id\": 2,\n           
+                \"datacenterID\": 1,\n            \"dspID\": 3,\n           
+                \"endpoint\": \"http://dumbbidder:5001/bid\"\n        }\n   
+                ],\n    \"syncUrl\": \"http://sync.com\",\n   
+                \"requestAdjustmentRate\": 100,\n    \"nativeAllowed\":
+                true,\n    \"bannerAllowed\": true,\n   
+                \"platformIosAppAllowed\": true,\n   
+                \"platformAndroidAppAllowed\": true,\n   
+                \"platformMobileWebAllowed\": true,\n   
+                \"platformPcWebAllowed\": true,\n    \"timeout\": 300,\n   
+                \"isEnabled\": true,\n    \"pmpSupported\": true\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Regression V2 > dsp
+      summary: Get dsp
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/dsps/{dsp_id}:
+    get:
+      tags:
+        - Regression V2 > dsp
+      summary: Get dsp by id Check Update
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: dsp_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Regression V2 > dsp
+      summary: Update dsp
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"id\": 2,\n    \"corp\": \"dumbbidder\",\n   
+                \"currency\": \"JPY\",\n    \"country\": \"US\",\n   
+                \"bidEndpoints\": [\n        {\n            \"id\":
+                0,\n            \"datacenterID\": 1,\n            \"dspID\":
+                3,\n            \"endpoint\":
+                \"http://dumbbidder:5001/bid\"\n        }\n    ],\n   
+                \"syncUrl\": \"http://sync.com\",\n   
+                \"requestAdjustmentRate\": 100,\n    \"nativeAllowed\":
+                true,\n    \"bannerAllowed\": true,\n   
+                \"platformIosAppAllowed\": true,\n   
+                \"platformAndroidAppAllowed\": true,\n   
+                \"platformMobileWebAllowed\": true,\n   
+                \"platformPcWebAllowed\": true,\n    \"timeout\": 300,\n   
+                \"isEnabled\": true,\n    \"pmpSupported\": true,\n   
+                \"createdAt\": \"2018-12-20T22:17:54Z\",\n    \"updatedAt\":
+                \"2018-12-22T02:17:53Z\"\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: dsp_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/formats:
+    get:
+      tags:
+        - Regression V2 > video
+      summary: Get placement types
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/ad-sizes:
+    get:
+      tags:
+        - Regression V2 > adSizes
+      summary: Get ad sizes
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/ad-sizes/spec-types:
+    get:
+      tags:
+        - Regression V2 > adSizes
+      summary: Get ad spec types
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/ad-positions:
+    get:
+      tags:
+        - Regression V2 > adPositions
+      summary: Get ad positions
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/pmp/buyers:
+    get:
+      tags:
+        - Regression V2 > buyers
+      summary: Get buyers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/pmp/buyer-identifiers:
+    get:
+      tags:
+        - Regression V2 > buyers
+      summary: Get buyer identifiers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/currencies:
+    get:
+      tags:
+        - Regression V2 > currency
+      summary: Get currencies
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/categories:
+    get:
+      tags:
+        - Regression V2 > category
+      summary: Get categories
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: all
+          in: query
+          schema:
+            type: boolean
+          example: 'true'
+        - name: sort
+          in: query
+          schema:
+            type: string
+          example: id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/device-types:
+    get:
+      tags:
+        - Regression V2 > device
+      summary: Get device types
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/device-os:
+    get:
+      tags:
+        - RSSP V3 > devices V3
+      summary: Get device OS
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/datacenters:
+    get:
+      tags:
+        - Regression V2 > datacenter
+      summary: Get datacenters
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/geos/countries:
+    get:
+      tags:
+        - Regression V2 > geos
+      summary: Get countries
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/native/data-types:
+    get:
+      tags:
+        - Regression V2 > native
+      summary: Get image types
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/native/video-protocols:
+    get:
+      tags:
+        - Regression V2 > native
+      summary: Get video protocols
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/platform-types:
+    get:
+      tags:
+        - Regression V2 > platform
+      summary: Get platforms
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/reports/v1/reporting:
+    post:
+      tags:
+        - Regression V2 > reports
+      summary: Post reports
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                fields:
+                  - ecpm
+                breakdown:
+                  - adspot_id
+                  - provider_id
+                  - publisher_id
+                  - country
+                timeframe:
+                  start_date: '2020-10-04'
+                  end_date: '2020-10-05'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/reports/v1/reportings/fields:
+    get:
+      tags:
+        - Regression V2 > reports
+      summary: Forward reports to reporting API
+      security:
+        - bearerAuth: []
+      responses:
+        '404':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/video/playback-methods:
+    get:
+      tags:
+        - Regression V2 > video
+      summary: Get playback methods
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/timezones:
+    get:
+      tags:
+        - Regression V2 > timezones
+      summary: Get timezones
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/auth-token:
+    post:
+      tags:
+        - RSSP V3 > auth (v2)
+      summary: Post auth token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/password/reset:
+    put:
+      tags:
+        - RSSP V3 > auth (v2)
+      summary: Reset password by mail key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                mailKey: '{{username}}'
+                newPassword: '{{password}}'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/reset-password:
+    post:
+      tags:
+        - RSSP V3 > auth (v2)
+      summary: Reset password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 1
+                mail: test@test.com
+                name: test
+                role: 1
+                publisherId: null
+                loginId: test
+                isEnabled: true
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/protections/targeting:
+    post:
+      tags:
+        - RSSP V3 > Variations with protections v2 vs v3
+      summary: Create a rule v3(protection)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: '{{$randomAbbreviation}} API Protection'
+                publisherId: 4
+                typeId: 1
+                active: true
+                createdBy: ''
+                publisherName: ''
+                updatedBy: ''
+                rule:
+                  inventoryTargeting:
+                    adspot:
+                      includedAdspots:
+                        - 1
+                      excludedAdspots: null
+                    adFormat:
+                      adFormats: null
+                      exclude: false
+                    adSize:
+                      adSizes:
+                        - adSizeId: 12
+                      exclude: false
+                    media:
+                      media:
+                        - 14
+                      exclude: false
+                    deviceType:
+                      deviceTypes:
+                        - 4
+                      exclude: false
+                    ifa:
+                      ifas: []
+                      exclude: false
+                    geo:
+                      geos:
+                        - 41
+                      exclude: false
+                    deviceOS:
+                      deviceOS:
+                        - 4
+                      exclude: false
+                  demandTargeting:
+                    dsp:
+                      dsps: null
+                      exclude: false
+                    dspSeat:
+                      dspSeats: null
+                      exclude: false
+                    advertiser:
+                      block: true
+                      allowUnknownAdvertisers: false
+                      allowNonDomains: false
+                      values:
+                        - tester-tester
+                        - '  Slotomania™ Vegas Casino Slots'
+                        - ' Activated Charcoal Whitening Toothpaste. | Search Ads'
+                        - ' Auto ibride | Ricerca annunci'
+                        - ' Cosphera Nahrungsergänzungsmittel '
+                        - '- 72 ANS: Test d''éligibilité gratuit en 1 clic'
+                      allowSubdomains: false
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - RSSP V3 > protections NEW > 2925 > id
+      summary: non-existent id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: integer
+          example: '12323232132132131133'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/protections/targeting/{rule_id}:
+    put:
+      tags:
+        - RSSP V3 > Variations with protections v2 vs v3
+      summary: Update a rule (enable) v3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: |-
+                {
+                    "name": "disabled rule api protection",
+                    "active": true,
+                    "publisherId": {{publisher_id}},
+                    "rule": {
+                        "inventoryTargeting": {
+                            "adspots": [
+                                {{adspot_id}}
+                            ],
+                            "deviceOS": [
+                                2
+                            ],
+                            "dsps": [
+                                1
+                            ],
+                            "media": [
+                                {{media_id}}
+                            ],
+                            "geo": {
+                                "geos": [
+                                    1,
+                                    2,
+                                    3
+                                ],
+                                "block": true
+                            }
+                        },
+                        "blockTargeting": {
+                            "categories": [
+                                1,
+                                2
+                            ],
+                            "dsps": [
+                                1
+                            ],
+                            "geo": {
+                                "geos": [
+                                    10,
+                                    15
+                                ],
+                                "block": false
+                            },
+                            "advertiser": {
+                                "values": [
+                                    "02KeT1dUMqzmwF",
+                                    "zzee8WFMJM",
+                                    "ZZwqpIUaxh"
+                                ],
+                                "block": true,
+                                "allowUnknownAdvertisers": false,
+                                "allowNonDomains": false,
+                                "allowSubdomains": false
+                            }
+                        }
+                    }
+                }
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rule_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - RSSP V3 > Variations with protections v2 vs v3
+      summary: Get a rule by id v3
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rule_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - RSSP V3 > Variations with protections v2 vs v3
+      summary: Delete a rule v3
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rule_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/protections/targeting/:
+    get:
+      tags:
+        - RSSP V3 > Variations with protections v2 vs v3
+      summary: Get protections by targeting sort=name-desc v3
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: sort
+          in: query
+          schema:
+            type: string
+          example: name-desc
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - RSSP V3 > protections (rules)(v3) > GS-2111 ID validation Copy
+      summary: Create a rule (protection) deviceType ID 99999
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: '{{$randomAbbreviation}} API Protection'
+                publisherId: 4
+                active: true
+                createdBy: ''
+                publisherName: ''
+                updatedBy: ''
+                typeId: 2
+                rule:
+                  adspot:
+                    includedAdspots:
+                      - 57
+                    excludedAdspots: null
+                  adFormat:
+                    adFormats:
+                      - 3
+                      - 2
+                    exclude: false
+                  adSize:
+                    adSizes:
+                      - 10
+                    exclude: null
+                  media:
+                    media:
+                      - 14
+                    exclude: null
+                  deviceType:
+                    deviceTypes:
+                      - 99999
+                    exclude: false
+                  ifa:
+                    ifas: []
+                    exclude: false
+                  geo:
+                    geos:
+                      - 221
+                    exclude: false
+                  deviceOS:
+                    deviceOSs:
+                      - 4
+                    exclude: false
+                  dsp:
+                    dsps: null
+                    exclude: false
+                  dspSeat:
+                    dspSeats: null
+                    exclude: false
+                  advertiser:
+                    advertisers:
+                      - tester-tester
+                      - '  Slotomania™ Vegas Casino Slots'
+                      - ' Activated Charcoal Whitening Toothpaste. | Search Ads'
+                      - ' Auto ibride | Ricerca annunci'
+                      - ' Cosphera Nahrungsergänzungsmittel '
+                      - '- 72 ANS: Test d''éligibilité gratuit en 1 clic'
+                    category:
+                      blockUnknownCategories: false
+                      categories:
+                        - 2
+                        - 4
+                        - 6
+                        - 8
+                      exclude: false
+      security:
+        - bearerAuth: []
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/protections/advertisers:
+    get:
+      tags:
+        - RSSP V3 > Variations with protections v2 vs v3
+      summary: Get protections by advertisers v3
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/protections/limits:
+    get:
+      tags:
+        - RSSP V3 > protections (rules)(v3)
+      summary: Get protections limits
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/protections/targeting/{negative_protection_id}:
+    put:
+      tags:
+        - RSSP V3 > protections (rules)(v3) > GS-2198
+      summary: Protection typeId=3 change typeId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: |-
+                {
+                    "name": "{{$randomAbbreviation}} API Protection",
+                    "publisherId": 4,
+                    "active": true,
+                    "createdBy": "",
+                    "publisherName": "",
+                    "updatedBy": "",
+                    "typeId": 2,
+                    "rule": {
+                    "adFormat": {
+                      "adFormats": [
+                        1,2
+                      ],
+                      "exclude": false
+                    },
+                    "adSize": {
+                      "adSizes": [
+                        3,4,5
+                      ],
+                      "exclude": false
+                    },
+                    "adspot": {
+                      "excludedAdspots": null,
+                      "includedAdspots": [12]
+                    },
+                    
+                    "deviceOS": {
+                      "deviceOSs": [
+                        1
+                      ],
+                      "exclude": false
+                    },
+                    "deviceType": {
+                      "deviceTypes": [
+                        4,5
+                      ],
+                      "exclude": false
+                    },
+                    "dsp": {
+                      "dsps": [
+                        1
+                      ],
+                      "exclude": false
+                    },
+                    "dspSeat": {
+                      "dspSeats": [
+                        0
+                      ],
+                      "exclude": false
+                    },
+                    "geo": {
+                      "exclude": false,
+                      "geos": [
+                        1,3,5
+                      ]
+                    },
+                    "ifa": {
+                      "exclude": false,
+                      "ifas": [
+                        "string"
+                      ]
+                    },
+                    "advertiser": {
+                      "advertisers": ["tester-tester"],
+                      "allowNonDomains": false,
+                      "allowSubdomains": false,
+                      "allowUnknownAdvertisers": false,
+                      "block": false
+                    },
+                    "media": {
+                      "exclude": false,
+                      "medias": [{{media_id}}]
+                    }
+                  }
+                }
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: negative_protection_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '403':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/protections/targeting/{u_protection_id}:
+    put:
+      tags:
+        - RSSP V3 > protections (rules)(v3) > GS-2111 ID validation Copy
+      summary: Create a rule (protection) AdSize ID NULL
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                active: true
+                adminOnly: true
+                name: '{{$randomAbbreviation}} API Protection'
+                notes: test_note
+                publisherId: 4
+                typeId: 2
+                publisherName: ''
+                rule:
+                  adFormat:
+                    adFormats:
+                      - 1
+                      - 2
+                    exclude: false
+                  adSize:
+                    adSizes:
+                      - null
+                    exclude: false
+                  adspot:
+                    excludedAdspots: null
+                    includedAdspots:
+                      - 57
+                  deviceOS:
+                    deviceOSs:
+                      - 1
+                    exclude: false
+                  deviceType:
+                    deviceTypes:
+                      - 4
+                      - 5
+                    exclude: false
+                  dsp:
+                    dsps:
+                      - 1
+                    exclude: false
+                  dspSeat:
+                    dspSeats:
+                      - 0
+                    exclude: false
+                  geo:
+                    exclude: false
+                    geos:
+                      - 1
+                      - 3
+                      - 5
+                  ifa:
+                    exclude: false
+                    ifas:
+                      - string
+                  media:
+                    exclude: false
+                    medias: []
+                  advertiser:
+                    advertisers:
+                      - tester-tester
+                      - '  Slotomania™ Vegas Casino Slots'
+                      - ' Activated Charcoal Whitening Toothpaste. | Search Ads'
+                      - ' Auto ibride | Ricerca annunci'
+                      - ' Cosphera Nahrungsergänzungsmittel '
+                      - '- 72 ANS: Test d''éligibilité gratuit en 1 clic'
+                updatedAt: '2022-04-11T16:28:17.627Z'
+                updatedBy: ''
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: u_protection_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/protections/targeting/10005000:
+    get:
+      tags:
+        - RSSP V3 > protections (rules)(v3)
+      summary: Get a rule by non-existed  id
+      security:
+        - bearerAuth: []
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/protections/targeting/{upd_protection_id}:
+    put:
+      tags:
+        - RSSP V3 > protections NEW > update > exclude two targetings
+      summary: Protection dsp & category excluded
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: '{{$randomAbbreviation}} API Protection'
+                publisherId: 4
+                active: true
+                typeId: 3
+                rule:
+                  adspot:
+                    includedAdspots:
+                      - 57
+                    excludedAdspots: null
+                  adFormat:
+                    adFormats:
+                      - 3
+                      - 2
+                    exclude: false
+                  adSize:
+                    adSizes:
+                      - 10
+                    exclude: false
+                  media:
+                    media:
+                      - 14
+                    exclude: false
+                  deviceType:
+                    deviceTypes:
+                      - 4
+                    exclude: false
+                  ifa:
+                    ifas:
+                      - sd
+                    exclude: false
+                  geo:
+                    geos:
+                      - 221
+                    exclude: false
+                  deviceOS:
+                    deviceOSs:
+                      - 4
+                    exclude: false
+                  dsp:
+                    dsps:
+                      - 1
+                      - 2
+                    exclude: true
+                  category:
+                    blockUnknownCategories: false
+                    categories:
+                      - 2
+                      - 4
+                      - 6
+                      - 8
+                    exclude: true
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: upd_protection_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/protections/targeting/{delete_protection_id}:
+    delete:
+      tags:
+        - RSSP V3 > protections NEW > delete
+      summary: Delete protection by user with role = 4,1,0
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: delete_protection_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '403':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pmp/private-auctions:
+    get:
+      tags:
+        - RSSP V3 > private auction
+      summary: Get all privat auctions
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - RSSP V3 > private auction
+      summary: Create private auction name null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 148
+                name: null
+                enabled: true
+                publisherId: 4
+                publisherName: Viber
+                optimized: true
+                startDate: '2022-05-04T00:00:00Z'
+                endDate: '2022-05-11T00:00:00Z'
+                noEndDate: false
+                inventoryTargeting:
+                  adFormat:
+                    adFormats:
+                      - 1
+                    exclude: false
+                  media:
+                    media:
+                      - 104
+                    exclude: false
+                  deviceType:
+                    deviceTypes:
+                      - 5
+                    exclude: false
+                  geo:
+                    geos:
+                      - 232
+                    exclude: false
+                relatedPackages:
+                  - package: ''
+                createdAt: '2022-05-04T12:53:04Z'
+                updatedAt: '2022-05-04T12:53:04Z'
+                createdBy: ''
+                updatedBy: ''
+      security:
+        - bearerAuth: []
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pmp/private-auctions/{test_private_auction_new_id}:
+    get:
+      tags:
+        - RSSP V3 > private auction
+      summary: Get a privat auction by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: test_private_auction_new_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pmp/private-auctions/{pr_auction_udate_id}:
+    put:
+      tags:
+        - RSSP V3 > private auction
+      summary: Update a private auction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: |-
+                {
+                    "id": 148,
+                    "name": "after change auto",
+                    "enabled": true,
+                    "publisherId": {{pr_auction_pub_id}},
+                    "publisherName": "Viber",
+                    "optimized": true,
+                   "startDate": "2024-09-27T00:00:00Z",
+                    "endDate": "2024-09-29T00:00:00Z",
+                    "noEndDate": false,
+                    "inventoryTargeting": {
+                        "adFormat": {
+                            "adFormats": [
+                                1
+                            ],
+                            "exclude": false
+                        },
+                        "media": {
+                            "media": [
+                                {{pr_auction_media_id}}
+                            ],
+                            "exclude": false
+                        },
+                        "deviceType": {
+                            "deviceTypes": [
+                                5
+                            ],
+                            "exclude": false
+                        },
+                        "geo": {
+                            "geos": [
+                                232
+                            ],
+                            "exclude": false
+                        }
+                    },
+                    "relatedPackages": [
+                        {
+                            "package": ""
+                        }
+                    ]
+                }
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pr_auction_udate_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/protections/targeting/{rule_id}:
+    put:
+      tags:
+        - RSSP V3 > Variations with protections v2 vs v3
+      summary: Update a rule (enable) v2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: |-
+                {
+                    "name": "disabled rule api protection",
+                    "active": true,
+                    "publisherId": {{publisher_id}},
+                    "rule": {
+                        "inventoryTargeting": {
+                            "adspots": [
+                                {{adspot_id}}
+                            ],
+                            "deviceOS": [
+                                2
+                            ],
+                            "dsps": [
+                                1
+                            ],
+                            "media": [
+                                {{media_id}}
+                            ],
+                            "geo": {
+                                "geos": [
+                                    1,
+                                    2,
+                                    3
+                                ],
+                                "block": true
+                            }
+                        },
+                        "blockTargeting": {
+                            "categories": [
+                                1,
+                                2
+                            ],
+                            "dsps": [
+                                1
+                            ],
+                            "geo": {
+                                "geos": [
+                                    10,
+                                    15
+                                ],
+                                "block": false
+                            },
+                            "advertiser": {
+                                "values": [
+                                    "02KeT1dUMqzmwF",
+                                    "zzee8WFMJM",
+                                    "ZZwqpIUaxh"
+                                ],
+                                "block": true,
+                                "allowUnknownAdvertisers": false,
+                                "allowNonDomains": false,
+                                "allowSubdomains": false
+                            }
+                        }
+                    }
+                }
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rule_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - RSSP V3 > Variations with protections v2 vs v3
+      summary: Delete a rule v2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rule_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - RSSP V3 > Variations with protections v2 vs v3
+      summary: Get a rule by id v2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: rule_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/protections/advertisers:
+    get:
+      tags:
+        - RSSP V3 > Variations with protections v2 vs v3
+      summary: Get protections by advertisers v2
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/protections/targeting/:
+    get:
+      tags:
+        - RSSP V3 > Variations with protections v2 vs v3
+      summary: Get protections by targeting sort=publisher_name-desc v2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: sort
+          in: query
+          schema:
+            type: string
+          example: publisher_name-desc
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pmp/deals:
+    get:
+      tags:
+        - RSSP V3 > deals
+      summary: Get all deals
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - RSSP V3 > deals
+      summary: Create deal negative floor price
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: '{{$randomAbbreviation}} deal'
+                enabled: true
+                price: 10
+                floorPrice: 9799999.19
+                currency: USD
+                publisherId: 4
+                publisherName: Mark Mceachran
+                dspId: 21
+                dspName: Rubicon
+                privateAuctionId: 4
+                buyers:
+                  - proposal: test proposal
+                    enabled: true
+                    buyer:
+                      dspId: 4
+                      identifiers:
+                        - publisherId: 1
+                          value: buyer ident 1
+                          kind:
+                            id: 1
+                            name: DSP Seat ID
+                blockTargeting:
+                  rule:
+                    advertiser:
+                      allowNonDomains: false
+                      allowSubdomains: false
+                      allowUnknownAdvertisers: false
+                      block: false
+                      values:
+                        - string
+                    categories:
+                      - 7
+                    dsps:
+                      - 2
+                    geo:
+                      block: false
+                      geos:
+                        - 9
+                        - 4
+                        - 20
+      security:
+        - bearerAuth: []
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pmp/deals/{deal_id}:
+    get:
+      tags:
+        - RSSP V3 > deals
+      summary: Get deal by id Check Update
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: deal_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - RSSP V3 > deals
+      summary: Update deal negative floor price
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: |-
+                {
+                    "name": "testDeal_updated",
+                    "enabled": true,
+                    "price": 11,
+                    "floorPrice": -2,
+                    "currency": "USD",
+                    "publisherId": 2,
+                    "publisherName": "Mark Mceachran",
+                    "dspId": 2,
+                    "dspName": "Rubicon",
+                    "privateAuctionId": {{private_auction_id}},
+                    "startDate": "2024-09-27T00:00:00Z"
+
+                }
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: deal_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pmp/buyer-identifiers:
+    get:
+      tags:
+        - RSSP V3 > buyers
+      summary: Get buyer-identifiers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pmp/buyers:
+    get:
+      tags:
+        - RSSP V3 > devices V3
+      summary: Get device types
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/version/:
+    get:
+      tags:
+        - RSSP V3 > Version
+      summary: Version
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/ad-formats:
+    get:
+      tags:
+        - RSSP V3 > ad format
+      summary: Get add formats
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/dsps:
+    get:
+      tags:
+        - RSSP V3 > dsp > get > filter > updated by
+      summary: by non-existent updated by
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: updated_by
+          in: query
+          schema:
+            type: string
+          example: non-existent-user
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - RSSP V3 > dsp > create
+      summary: 'Create dsp: 254 chars name'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: >-
+                  254 LONG auto TOO LONG Name TOO LONG NOTES TOO LONG NOTES TOO
+                  LONG NOTES TOO LONG NOTES TOO LONG NOTES TOO LONG NOTES TOO
+                  LONG NOTES TOO LONG NOTES TOO LONG NOTES TOO LONG NOTES TOO
+                  LONG NOTES TOO LONG NOTES TOO LONG NOTES TOO LONG NOTES TOO
+                  LONG NOTES T
+                currency: USD
+                country: US
+                bidEndpoints:
+                  - id: 180
+                    datacenterID: 1
+                    endpoint: http://dumbbidder:5001/bid
+                syncUrl: http://sync.com
+                requestAdjustmentRate: 100
+                idfaRequired: false
+                syncRequired: false
+                nativeAllowed: true
+                bannerAllowed: true
+                videoAllowed: false
+                platformIosAppAllowed: true
+                platformAndroidAppAllowed: true
+                platformMobileWebAllowed: true
+                platformPcWebAllowed: true
+                tokenGeneration: false
+                timeout: 300
+                debugAdspotIds: ''
+                status: 3
+                allowedCountries: ''
+                dspTypeId: 0
+                pmpSupported: true
+                ecpmSupported: false
+                nonProgrammatic: false
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/dsps/{dsp_id}:
+    get:
+      tags:
+        - RSSP V3 > dsp > create
+      summary: Get dsp id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: dsp_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - RSSP V3 > dsp > create
+      summary: Update dsp
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"id\": {{dsp_id}},\n    \"name\": \"dumbbidder
+                {{$randomAdjective}}\",\n    \"currency\": \"USD\",\n   
+                \"country\": \"US\",\n    \"bidEndpoints\": [\n       
+                {\n            \"id\": 180,\n            \"datacenterID\":
+                1,\n            \"endpoint\":
+                \"http://dumbbidder:5001/bid\"\n        }\n    ],\n   
+                \"syncUrl\": \"http://sync.com\",\n   
+                \"requestAdjustmentRate\": 100,\n    \"idfaRequired\":
+                false,\n    \"syncRequired\": false,\n    \"nativeAllowed\":
+                true,\n    \"bannerAllowed\": true,\n    \"videoAllowed\":
+                false,\n    \"platformIosAppAllowed\": true,\n   
+                \"platformAndroidAppAllowed\": true,\n   
+                \"platformMobileWebAllowed\": true,\n   
+                \"platformPcWebAllowed\": true,\n    \"tokenGeneration\":
+                false,\n    \"timeout\": 300,\n    \"debugAdspotIds\":
+                \"\",\n    \"status\": 3,\n    \"allowedCountries\": \"\",\n   
+                \"dspTypeId\": 0,\n    \"pmpSupported\": true,\n   
+                \"ecpmSupported\": false,\n    \"nonProgrammatic\": false,\n   
+                \"createdAt\": \"2022-05-03T12:42:25Z\",\n    \"createdBy\":
+                \"\",\n    \"updatedAt\": \"2022-05-03T12:43:33Z\",\n   
+                \"updatedBy\": \"\"\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: dsp_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/dsps/{test_dsp_id}:
+    delete:
+      tags:
+        - RSSP V3 > dsp > delete
+      summary: DSP status 3 e2e
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: test_dsp_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/dsp-statuses:
+    get:
+      tags:
+        - RSSP V3 > dsp
+      summary: GET dsp statuses
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/dynamic:
+    get:
+      tags:
+        - RSSP V3 > dynamic-pricing > get
+      summary: filter active & limit
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: active
+          in: query
+          schema:
+            type: boolean
+          example: 'false'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '12'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - RSSP V3 > dynamic-pricing > create
+      summary: Create pricing no rule
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n  \"active\": true,\n  \"notes\": \"test notes\",\n 
+                \"publisherId\": 4\n}\n"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/dynamic/{get_dynamic_pricing_id}:
+    get:
+      tags:
+        - RSSP V3 > dynamic-pricing > get
+      summary: pricing by id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: get_dynamic_pricing_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/dynamic/100500:
+    get:
+      tags:
+        - RSSP V3 > dynamic-pricing > get
+      summary: non-existed pricing
+      security:
+        - bearerAuth: []
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - RSSP V3 > dynamic-pricing > delete
+      summary: Delete non-presented pricing
+      security:
+        - bearerAuth: []
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - RSSP V3 > dynamic-pricing > update
+      summary: Edit pricing by non-existed id
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"active\": true,\n    \"notes\": \"test notes\",\n   
+                \"name\": \"{{pricing_name}}\",\n    \"floorPrice\": 0.01,\n   
+                \"publisherId\": {{pricing_pub_id}},\n    \"rule\": {\n       
+                \"adspot\": {\n            \"includedAdspots\":
+                [\n                \n            ],\n           
+                \"excludedAdspots\": []\n        },\n        \"adFormat\":
+                {\n            \"adFormats\": [\n                2\n           
+                ],\n            \"exclude\": false\n        },\n       
+                \"adSize\": {\n            \"adSizes\": [\n               
+                10\n            ],\n            \"exclude\": false\n       
+                },\n        \"media\": {\n            \"media\":
+                [\n                {{test_media_id}}\n           
+                ],\n            \"exclude\": false\n        },\n       
+                \"deviceType\": {\n            \"deviceTypes\":
+                [\n                4\n            ],\n            \"exclude\":
+                false\n        },\n        \"geo\": {\n            \"geos\":
+                [\n                221\n            ],\n            \"exclude\":
+                false\n        },\n        \"deviceOS\": {\n           
+                \"deviceOSs\": [\n                4\n            ],\n           
+                \"exclude\": false\n        },\n        \"dsp\": {\n           
+                \"dsps\": [3],\n            \"exclude\": false\n        }\n   
+                }\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/dynamic/{test_pricing_id}:
+    delete:
+      tags:
+        - RSSP V3 > dynamic-pricing > delete
+      summary: Delete pricing by id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: test_pricing_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - RSSP V3 > dynamic-pricing > update
+      summary: Pricing by non-existed media
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n  \"active\": true,\n  \"notes\": \"test notes\",\n 
+                \"publisherId\": {{pricing_pub_id}},\n  \"rule\": {\n       
+                \"adspot\": {\n            \"includedAdspots\": [],\n           
+                \"excludedAdspots\": null\n        },\n        \"adFormat\":
+                {\n            \"adFormats\": [\n                2\n           
+                ],\n            \"exclude\": false\n        },\n       
+                \"adSize\": {\n            \"adSizes\": [\n               
+                10\n            ],\n            \"exclude\": null\n       
+                },\n        \"media\": {\n            \"media\":
+                [\n                10500\n            ],\n           
+                \"exclude\": null\n        },\n        \"deviceType\":
+                {\n            \"deviceTypes\": [\n               
+                4\n            ],\n            \"exclude\": false\n       
+                },\n        \"ifa\": {\n            \"ifas\": [],\n           
+                \"exclude\": false\n        },\n        \"geo\": {\n           
+                \"geos\": [\n                221\n                \n           
+                ],\n            \"exclude\": false\n        },\n       
+                \"deviceOS\": {\n            \"deviceOSs\": [\n               
+                4\n            ],\n            \"exclude\": false\n       
+                },\n        \"dsp\": {\n            \"dsps\": null,\n           
+                \"exclude\": false\n        },\n        \"dspSeat\":
+                {\n            \"dspSeats\": null,\n            \"exclude\":
+                false\n        },\n            \"advertiser\":
+                {\n                \"advertisers\": [\n                   
+                \"tester-tester\",\n               \"  Slotomania™ Vegas Casino
+                Slots\",\n               \" Activated Charcoal Whitening
+                Toothpaste. | Search Ads\",\n               \" Auto ibride |
+                Ricerca annunci\",\n               \" Cosphera
+                Nahrungsergänzungsmittel \",\n               \"- 72 ANS: Test
+                d'éligibilité gratuit en 1 clic\"\n               
+                ],\n            \"category\": {\n                
+                \"blockUnknownCategories\": false,\n               
+                \"categories\": [2,4,6,8],\n                \"exclude\":
+                false\n\n    \n            }\n        },\n  \"updatedAt\":
+                \"2022-04-06T05:58:23.584Z\"\n}\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: test_pricing_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/dynamic/{pricing_id}:
+    delete:
+      tags:
+        - RSSP V3 > dynamic-pricing > delete
+      summary: Delete pricing denied
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pricing_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '403':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/open:
+    get:
+      tags:
+        - RSSP V3 > open-pricing > get
+      summary: pricing limit
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - RSSP V3 > open-pricing > create
+      summary: Create Pricing no name
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n  \"active\": true,\n  \"notes\": \"open notes\",\n 
+                \"publisherId\": {{pricing_pub_id}},\n  \"priority\":true,\n 
+                \"floorPrice\": 12.12,\n  \"rule\": {\n        \"adspot\":
+                {\n            \"includedAdspots\":
+                [{{test_adspot_id}}],\n            \"excludedAdspots\":
+                []\n        },\n        \"adFormat\": {\n           
+                \"adFormats\": [\n                3,\n               
+                2\n            ],\n            \"exclude\": true\n       
+                },\n        \"adSize\": {\n            \"adSizes\":
+                [\n                10\n            ],\n            \"exclude\":
+                false\n        },\n        \"media\": {\n            \"media\":
+                [\n                {{test_media_id}}\n           
+                ],\n            \"exclude\": false\n        },\n       
+                \"deviceType\": {\n            \"deviceTypes\":
+                [\n                4\n            ],\n            \"exclude\":
+                false\n        },\n        \"ifa\": {\n            \"ifas\":
+                [\n                \"ifa test pricing-open\"\n           
+                ],\n            \"exclude\": false\n        },\n        \"geo\":
+                {\n            \"geos\": [\n                142, 164, 209, 114,
+                118\n            ],\n            \"exclude\": false\n       
+                },\n        \"deviceOS\": {\n            \"deviceOSs\":
+                [\n                4\n            ],\n            \"exclude\":
+                false\n        },\n        \"dsp\": {\n            \"dsps\":
+                [\n                3\n            ],\n            \"exclude\":
+                false\n        },\n        \"dspSeat\": {\n           
+                \"dspSeats\": null,\n            \"exclude\": false\n       
+                },\n            \"advertiser\": {\n               
+                \"advertisers\": [\n                   
+                \"tester-tester\",\n               \"  Slotomania™ Vegas Casino
+                Slots\",\n               \" Activated Charcoal Whitening
+                Toothpaste. | Search Ads\",\n               \" Auto ibride |
+                Ricerca annunci\",\n               \" Cosphera
+                Nahrungsergänzungsmittel \",\n               \"- 72 ANS: Test
+                d'éligibilité gratuit en 1 clic\"\n                ]\n       
+                }\n}\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/open/{get_open_pricing_id}:
+    get:
+      tags:
+        - RSSP V3 > open-pricing > get
+      summary: pricing by id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: get_open_pricing_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/open/100500:
+    get:
+      tags:
+        - RSSP V3 > open-pricing > get
+      summary: non-existed pricing
+      security:
+        - bearerAuth: []
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - RSSP V3 > open-pricing > update
+      summary: Edit pricing by non-existed id
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"active\": true,\n    \"notes\": \"test notes\",\n   
+                \"name\": \"{{pricing_name}}\",\n    \"floorPrice\": 0.01,\n   
+                \"priority\":true,\n    \"publisherId\":
+                {{pricing_pub_id}},\n    \"rule\": {\n        \"adspot\":
+                {\n            \"includedAdspots\": [\n               
+                \n            ],\n            \"excludedAdspots\": []\n       
+                },\n        \"adFormat\": {\n            \"adFormats\":
+                [\n                2\n            ],\n            \"exclude\":
+                false\n        },\n        \"adSize\": {\n           
+                \"adSizes\": [\n                10\n            ],\n           
+                \"exclude\": false\n        },\n        \"media\":
+                {\n            \"media\": [\n               
+                {{test_media_id}}\n            ],\n            \"exclude\":
+                false\n        },\n        \"deviceType\": {\n           
+                \"deviceTypes\": [\n                4\n           
+                ],\n            \"exclude\": false\n        },\n        \"geo\":
+                {\n            \"geos\": [\n                221\n           
+                ],\n            \"exclude\": false\n        },\n       
+                \"deviceOS\": {\n            \"deviceOSs\": [\n               
+                4\n            ],\n            \"exclude\": false\n       
+                },\n        \"dsp\": {\n            \"dsps\": [3],\n           
+                \"exclude\": false\n        }\n    }\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/open/:
+    post:
+      tags:
+        - RSSP V3 > open-pricing > create
+      summary: Pricing with disabled publisher
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"active\": true,\n    \"notes\": \"test notes\",\n   
+                \"name\": \"Pricing {{$randomAbbreviation}} auto 
+                {{$randomAbbreviation}}\",\n    \"floorPrice\": 0.01,\n   
+                \"publisherId\": {{pricing_pub_id}},\n    \"priority\":
+                true,\n    \"rule\": {\n        \"adspot\": {\n           
+                \"includedAdspots\": [\n               \n           
+                ],\n            \"excludedAdspots\": []\n        },\n       
+                \"adFormat\": {\n            \"adFormats\": [\n               
+                2\n            ],\n            \"exclude\": false\n       
+                },\n        \"adSize\": {\n            \"adSizes\":
+                [\n                10\n            ],\n            \"exclude\":
+                false\n        },\n        \"media\": {\n            \"media\":
+                [\n                {{test_media_id}}\n           
+                ],\n            \"exclude\": false\n        },\n       
+                \"deviceType\": {\n            \"deviceTypes\":
+                [\n                4\n            ],\n            \"exclude\":
+                false\n        },\n        \"geo\": {\n            \"geos\":
+                [\n                221\n            ],\n            \"exclude\":
+                false\n        },\n        \"deviceOS\": {\n           
+                \"deviceOSs\": [\n                4\n            ],\n           
+                \"exclude\": false\n        },\n        \"dsp\": {\n           
+                \"dsps\": [],\n            \"exclude\": false\n        }\n   
+                }\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/open/{test_pricing_id}:
+    put:
+      tags:
+        - RSSP V3 > open-pricing > update
+      summary: Pricing with negative floor price
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"active\": true,\n    \"notes\": \"test notes\",\n   
+                \"name\": \"{{pricing_name}}\",\n    \"floorPrice\": -2.00,\n   
+                \"priority\": true,\n    \"publisherId\":
+                {{pricing_pub_id}},\n    \"rule\": {\n        \"adspot\":
+                {\n            \"includedAdspots\": [],\n           
+                \"excludedAdspots\": []\n        },\n        \"adFormat\":
+                {\n            \"adFormats\": [\n                2\n           
+                ],\n            \"exclude\": false\n        },\n       
+                \"adSize\": {\n            \"adSizes\": [\n               
+                10\n            ],\n            \"exclude\": false\n       
+                },\n        \"media\": {\n            \"media\":
+                [\n                {{test_media_id}}\n           
+                ],\n            \"exclude\": false\n        },\n       
+                \"deviceType\": {\n            \"deviceTypes\":
+                [\n                4\n            ],\n            \"exclude\":
+                false\n        },\n        \"geo\": {\n            \"geos\":
+                [\n                221\n            ],\n            \"exclude\":
+                false\n        },\n        \"deviceOS\": {\n           
+                \"deviceOSs\": [\n                4\n            ],\n           
+                \"exclude\": false\n        },\n        \"dsp\": {\n           
+                \"dsps\": [],\n            \"exclude\": false\n        }\n   
+                }\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: test_pricing_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - RSSP V3 > open-pricing > delete
+      summary: Delete pricing by id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: test_pricing_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/open/1005500:
+    delete:
+      tags:
+        - RSSP V3 > open-pricing > delete
+      summary: Delete non-presented pricing
+      security:
+        - bearerAuth: []
+      responses:
+        '400':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/open/{pricing_id}:
+    delete:
+      tags:
+        - RSSP V3 > open-pricing > delete
+      summary: Delete pricing denied
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pricing_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '403':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/pricing/open/export:
+    get:
+      tags:
+        - RSSP V3 > open-pricing > export
+      summary: accessing wrong publisher
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: publisher_id
+          in: query
+          schema:
+            type: string
+          example: '{{account_1}}'
+      responses:
+        '401':
+          description: Successful response
+          content:
+            application/json: {}
+  /v3/datacenters:
+    get:
+      tags:
+        - RSSP V3 > datacenter
+      summary: Get datacenters
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
